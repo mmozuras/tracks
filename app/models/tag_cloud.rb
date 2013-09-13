@@ -10,17 +10,9 @@ class TagCloud
     @tags ||= Tag.find_by_sql(sql).sort_by { |tag| tag.name.downcase }
   end
 
-  def min
-    @min ||= [0, tag_counts.min].min
-  end
-
-  def max
-    @max ||= tag_counts.max
-  end
-
   def divisor
     levels = 10
-    @divisor ||= ((max - min) / levels) + 1
+    @divisor ||= ((tag_counts.max) / levels) + 1
   end
 
   private
