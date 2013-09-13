@@ -1,0 +1,17 @@
+<div class="stats_module">
+<h3><%= title %></h3>
+<p><%= description %></p>
+
+  <p>
+    <% if tag_cloud.tags.size < 1
+    t('stats.no_tags_available')
+    else
+    tag_cloud.tags.each do |t| %>
+    <%= link_to t.name, tag_path(t.name), {
+      :style => "font-size: " + (9 + 2*(t.count.to_i-tag_cloud.min)/tag_cloud.divisor).to_s + "pt",
+      :title => t.count.to_s+" #{t('common.actions_midsentence', :count => t.count)}"}
+    -%> <%
+    end
+    end-%>
+</p>
+</div>
